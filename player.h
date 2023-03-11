@@ -37,6 +37,24 @@ public:
 			speed -=0.25f;
 			if (speed <= 0)speed = 0;
 		}
+		sf::FloatRect bounds = sprite.getLocalBounds();
+		sf::Vector2f pos = sprite.getPosition();
+		
+		speedx = sin((angle * pi) / 180) * speed;
+		speedy = -cos((angle * pi) / 180) * speed;
+
+		if (pos.x - bounds.width / 2 <= 0) {
+			sprite.setPosition (bounds.width / 2, pos.y); }
+
+		if (pos.x + bounds.width / 2 >= window_width) {
+			sprite.setPosition (window_width - bounds.width / 2, pos.y); }
+
+		if (pos.y - bounds.height / 2 <= 0) { 
+			sprite.setPosition (pos.x, bounds.height / 2); }
+
+		if (pos.y + bounds.width / 2 >= window_height) { 
+			sprite.setPosition (pos.x, window_height - bounds.width / 2); }
+		
 		speedx = sin((angle * pi) / 180) * speed;
 		speedy = -cos((angle * pi) / 180) * speed;
 
